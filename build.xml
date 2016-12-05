@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="introsde-2016-assignment-3"
+         xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+         basedir=".">
+
+    <!-- Ant properties (software versions, workspace paths, etc.) -->
+    <property name="ivy.install.version" value="2.4.0"/>
+    <property name="ivy.jar.dir" value="${basedir}/ivy"/>
+    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+
+    <property name="server.wsdl" value="http://introsde-a3-server.herokuapp.com/ws/people?wsdl"/>
+    <property name="client.basedir" value="${basedir}"/>
+
+    <property name="build.dir" value="build"/>
+    <property name="src.dir" value="src"/>
+    <property name="lib.dir" value="lib"/>
+
+    <path id="client.lib.path.id">
+        <fileset dir="${client.basedir}/${lib.dir}"/>
+    </path>
+
+    <!-- Targets required to download and configure Ivy -->
+    <target name="download-ivy" unless="skip.download" description="Download ivy">
+        <mkdir dir="${ivy.jar.dir}"/>
+        <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+             dest="${ivy.jar.file}" usetimestamp="true"/>
+    </target>
+
+    <target name="install-ivy" depends="download-ivy" description="Install ivy">
+        <path id="ivy.lib.path">
+            <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    </target>
+
+    <!-- Client targets -->
+    <target name="retrieve.client" depends="install-ivy" description="Download ivy dependencies">
+        <ivy:resolve file="${client.basedir}/ivy.xml"/>
+        <ivy:retrieve pattern="${client.basedir}/${lib.dir}/[artifact]-[type]-[revision].[ext]"/>
+    </target>
+
+    <target name="init.client" depends="retrieve.client" description="Init client workspace">
+        <delete dir="${client.basedir}/${build.dir}"/>
+        <delete dir="${client.basedir}/${src.dir}/introsde/assignment/soap"/>
+        <mkdir dir="${client.basedir}/${build.dir}"/>
+    </target>
+
+    <target name="get-wsdl.client" depends="init.client" description="Generates classes from WSDL">
+        <exec executable="wsimport">
+            <arg value="-keep"/>
+            <arg value="${server.wsdl}"/>
+        </exec>
+        <exec executable="mv">
+            <arg value="${client.basedir}/introsde/assignment/soap"/>
+            <arg value="${client.basedir}/${src.dir}/introsde/assignment/soap"/>
+        </exec>
+        <delete dir="${client.basedir}/introsde"/>
+    </target>
+
+    <target name="compile.client" depends="get-wsdl.client" description="Compile client project">
+        <javac destdir="${client.basedir}/${build.dir}"
+               classpathref="client.lib.path.id" includeAntRuntime="false">
+            <src path="${client.basedir}/${src.dir}"/>
+        </javac>
+    </target>
+
+    <target name="execute.client" depends="compile.client" description="Run client">
+        <java classname="introsde.assignment.test.Main" classpath="${client.basedir}/${build.dir}">
+            <classpath>
+                <fileset dir="${client.basedir}/${lib.dir}">
+                    <include name="**/*.jar"/>
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </java>
+    </target>
+
+</project>

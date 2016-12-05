@@ -1,0 +1,135 @@
+Endpoint: http://introsde-a3-server.herokuapp.com/ws/people?wsdl
+
+Method #4: createPerson
+[Input]
+Id: null
+Name: Name1
+Surname: Surname1
+Current Health: 
+Measure History: 
+
+Method #4: createPerson
+[Input]
+Id: null
+Name: Name2
+Surname: Surname2
+Current Health: 
+Measure History: 
+
+Method #4: createPerson
+[Input]
+Id: null
+Name: Name3
+Surname: Surname3
+Current Health: 
+Measure History: 
+
+Method #1: readPersonList
+[Output]
+Id: 1
+Name: Name1
+Surname: Surname1
+Current Health: 
+Measure History: 
+Id: 2
+Name: Name2
+Surname: Surname2
+Current Health: 
+Measure History: 
+Id: 3
+Name: Name3
+Surname: Surname3
+Current Health: 
+Measure History: 
+
+Method #3: updatePerson
+[Input]
+Id: 1
+Name: Name1
+Surname: New Surname
+Current Health: 
+Measure History: 
+
+Method #2: readPerson
+[Input]
+1
+[Output]
+Id: 1
+Name: Name1
+Surname: New Surname
+Current Health: 
+Measure History: 
+
+Method #5: deletePerson
+[Input]
+1
+
+Method #9: savePersonMeasure
+[Input]
+2
+Id: null - Type: MeasureType1 - Date: 2016-12-05T21:01:18.812+01:00 - Value: MeasureValue1-1 - ValueType: MeasureValueType1-1
+[Output]
+Id: 1 - Type: MeasureType1 - Date: 2016-12-05T20:01:18.812Z - Value: MeasureValue1-1 - ValueType: MeasureValueType1-1
+
+Method #9: savePersonMeasure
+[Input]
+2
+Id: null - Type: MeasureType1 - Date: 2016-12-05T21:01:19.112+01:00 - Value: MeasureValue1-2 - ValueType: MeasureValueType1-2
+[Output]
+Id: 2 - Type: MeasureType1 - Date: 2016-12-05T20:01:19.112Z - Value: MeasureValue1-2 - ValueType: MeasureValueType1-2
+
+Method #9: savePersonMeasure
+[Input]
+2
+Id: null - Type: MeasureType2 - Date: 2016-12-05T21:01:19.420+01:00 - Value: MeasureValue2-1 - ValueType: MeasureValueType2-1
+[Output]
+Id: 3 - Type: MeasureType2 - Date: 2016-12-05T20:01:19.420Z - Value: MeasureValue2-1 - ValueType: MeasureValueType2-1
+
+Method #9: savePersonMeasure
+[Input]
+2
+Id: null - Type: MeasureType2 - Date: 2016-12-05T21:01:19.726+01:00 - Value: MeasureValue2-2 - ValueType: MeasureValueType2-2
+[Output]
+Id: 4 - Type: MeasureType2 - Date: 2016-12-05T20:01:19.726Z - Value: MeasureValue2-2 - ValueType: MeasureValueType2-2
+
+Method #9: savePersonMeasure
+[Input]
+2
+Id: null - Type: MeasureType3 - Date: 2016-12-05T21:01:20.033+01:00 - Value: MeasureValue3-1 - ValueType: MeasureValueType3-1
+[Output]
+Id: 5 - Type: MeasureType3 - Date: 2016-12-05T20:01:20.033Z - Value: MeasureValue3-1 - ValueType: MeasureValueType3-1
+
+Method #9: savePersonMeasure
+[Input]
+2
+Id: null - Type: MeasureType3 - Date: 2016-12-05T21:01:20.340+01:00 - Value: MeasureValue3-2 - ValueType: MeasureValueType3-2
+[Output]
+Id: 6 - Type: MeasureType3 - Date: 2016-12-05T20:01:20.340Z - Value: MeasureValue3-2 - ValueType: MeasureValueType3-2
+
+Method #7: readMeasureTypes
+[Output]
+MeasureType1
+MeasureType2
+MeasureType3
+
+Method #6: readPersonHistory
+[Input]
+2
+MeasureType3
+[Output]
+Id: 5 - Type: MeasureType3 - Date: 2016-12-05T20:01:20.033Z - Value: MeasureValue3-1 - ValueType: MeasureValueType3-1
+
+Method #8: readPersonMeasure
+[Input]
+2
+MeasureType3
+6
+[Output]
+Id: 6 - Type: MeasureType3 - Date: 2016-12-05T20:01:20.340Z - Value: MeasureValue3-2 - ValueType: MeasureValueType3-2
+
+Method #10: updatePersonMeasure
+[Input]
+2
+Id: 6 - Type: MeasureType3 - Date: 2016-12-05T20:01:20.340Z - Value: MeasureValue3-2 - ValueType: MeasureValueType3-2
+[Output]
+Id: 6 - Type: MeasureType3 - Date: 2016-12-05T20:01:20.340Z - Value: MeasureValue3-2_NEW - ValueType: MeasureValueType3-2_NEW
