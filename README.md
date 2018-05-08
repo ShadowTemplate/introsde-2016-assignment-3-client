@@ -3,7 +3,8 @@
 **Introduction to Service Design and Engineering | University of Trento**
 
 This file aims to provide a short documentation for the third course assignment.  
-The original instructions can be found [here](https://sites.google.com/a/unitn.it/introsde_2016-17/lab-sessions/assignments/assignment-3).
+The original instructions can be found [here](
+https://rawgit.com/ShadowTemplate/introsde-2016-assignment-3-client/master/instructions/Assignment%2003%3A%20SOAP%20Web%20Services%20-%20introSDE_2016_17.htm).
 
 The project was developed individually.
 
